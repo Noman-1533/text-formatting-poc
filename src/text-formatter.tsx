@@ -98,7 +98,9 @@ const TextFormatter = () => {
           }}
           style={{ height: "20vh", marginBottom: "40px" }}
         />
-        <div className="word-count">{content.length} Characters</div>
+        <div className="word-count">
+          {quillRef.current?.editor?.getText().length} Characters
+        </div>
       </div>
       <div className="button-group">
         <button className="primary-button" onClick={convertFormat}>
