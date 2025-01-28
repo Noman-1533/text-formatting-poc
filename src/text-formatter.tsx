@@ -96,11 +96,9 @@ const TextFormatter = () => {
           modules={{
             toolbar: [["bold", "italic", "underline"], ["clean"]],
           }}
-          style={{ height: "20vh", marginBottom: "70px" }}
+          style={{ height: "20vh", marginBottom: "40px" }}
         />
-        <div className="word-count">
-          {content.split(/\s+/).filter(Boolean).length} words
-        </div>
+        <div className="word-count">{content.length} Characters</div>
       </div>
       <div className="button-group">
         <button className="primary-button" onClick={convertFormat}>

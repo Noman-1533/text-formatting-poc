@@ -36,15 +36,18 @@ h1 {
 }
 
 .word-count {
-  position: absolute;
+  /* position: absolute; */
   bottom: 8px;
   right: 25px;
   background: rgba(255, 255, 255, 0.9);
   padding: 4px 8px;
   border-radius: 4px;
-  font-size: 12px;
+  font-size: 20px;
+  font-weight: bolder;
   color: #65676b;
   z-index: 1;
+  display: flex;
+  justify-content: end;
   border: 1px solid #e4e6eb;
 }
 
