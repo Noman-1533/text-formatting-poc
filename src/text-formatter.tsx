@@ -96,6 +96,7 @@ const TextFormatter = () => {
           modules={{
             toolbar: [["bold", "italic", "underline"], ["clean"]],
           }}
+          style={{ height: "20vh", marginBottom: "70px" }}
         />
         <div className="word-count">
           {content.split(/\s+/).filter(Boolean).length} words
