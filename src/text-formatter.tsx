@@ -86,7 +86,7 @@ const TextFormatter = () => {
 
   return (
     <div className="container">
-      <h1>Facebook Text Formatter</h1>
+      <h1>Text Formatter</h1>
       <div className="label">Format your text:</div>
       <div className="editor-container">
         <ReactQuill
