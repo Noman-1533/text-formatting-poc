@@ -17,8 +17,14 @@ const TextFormatter = () => {
   const italicChars: string[] = Array.from(
     "𝘈𝘉𝘊𝘋𝘌𝘍𝘎𝘏𝘐𝘑𝘒𝘓𝘔𝘕𝘖𝘗𝘘𝘙𝘚𝘛𝘜𝘝𝘞𝘟𝘠𝘡𝘢𝘣𝘤𝘥𝘦𝘧𝘨𝘩𝘪𝘫𝘬𝘭𝘮𝘯𝘰𝘱𝘲𝘳𝘴𝘵𝘶𝘷𝘸𝘹𝘺𝘻0123456789"
   );
+  const boldItalicChars: string[] = Array.from(
+    "𝑨𝑩𝑪𝑫𝑬𝑭𝑮𝑯𝑰𝑱𝑲𝑳𝑴𝑵𝑶𝑷𝑸𝑹𝑺𝑻𝑼𝑽𝑾𝑿𝒀𝒁𝒂𝒃𝒄𝒅𝒆𝒇𝒈𝒉𝒊𝒋𝒌𝒍𝒎𝒏𝒐𝒑𝒒𝒓𝒔𝒕𝒖𝒗𝒘𝒙𝒚𝒛𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗"
+  );
 
-  const formatChar = (char: string, format: "bold" | "italic"): string => {
+  const formatChar = (
+    char: string,
+    format: "bold" | "italic" | "boldItalic"
+  ): string => {
     const index: number = normalChars.indexOf(char);
     if (index === -1) return char;
 
@@ -27,6 +33,8 @@ const TextFormatter = () => {
         return boldChars[index];
       case "italic":
         return italicChars[index];
+      case "boldItalic":
+        return boldItalicChars[index];
       default:
         return char;
     }
@@ -48,7 +56,9 @@ const TextFormatter = () => {
           const chars: string[] = Array.from(op.insert);
           chars.forEach((char: string) => {
             if (op.attributes) {
-              if (op.attributes.bold) {
+              if (op.attributes.bold && op.attributes.italic) {
+                char = formatChar(char, "boldItalic");
+              } else if (op.attributes.bold) {
                 char = formatChar(char, "bold");
               } else if (op.attributes.italic) {
                 char = formatChar(char, "italic");
