@@ -99,7 +99,7 @@ const TextFormatter = () => {
           style={{ height: "20vh", marginBottom: "40px" }}
         />
         <div className="word-count">
-          {quillRef.current?.editor?.getText().length} Characters
+          {quillRef.current?.editor?.getText().length || 0} Characters
         </div>
       </div>
       <div className="button-group">
