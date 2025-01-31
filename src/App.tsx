@@ -7,8 +7,6 @@ function App() {
   return (
     <>
       <TextStyleComponent />
-      {/* <TextFormatter />
-      <TextFormatter2 /> */}
     </>
   );
 }
