@@ -550,7 +550,11 @@ const TextStyleComponent: React.FC = () => {
           // Apply the style
           const styledText = text
             .split("")
-            .map((char) => unicodeStyles[style][char] || char)
+            .map((char) => {
+              // Assert that `char` is a valid key for `unicodeStyles[style]`
+              const key = char as keyof (typeof unicodeStyles)[typeof style];
+              return unicodeStyles[style][key] || char;
+            })
             .join("");
           editor.deleteText(range.index, range.length);
           editor.insertText(range.index, styledText);
