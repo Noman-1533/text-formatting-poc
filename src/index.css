@@ -1,0 +1,46 @@
+/* q1.font-sans-serif {
+  font-family: sans-serif;
+} */
+/* .ql-font-arial {
+  font-family: Arial, sans-serif;
+} */
+
+/* .ql-font-times {
+  font-family: "Times New Roman", serif;
+}
+
+.ql-font-script {
+  font-family: cursive;
+}
+
+.ql-font-fraktur {
+  font-family: "UnifrakturMaguntia", cursive;
+}
+
+.ql-font-monospace {
+  font-family: "Courier New", monospace;
+} */
+
+/* .app .ql-editor {
+  font-family: "Ubuntu";
+} */
+
+/* Set dropdown font-families */
+/* .ql-font span[data-label="Ubuntu"]::before {
+  font-family: "Ubuntu";
+}
+.ql-font .ql-font span[data-label="Raleway"]::before {
+  font-family: "Raleway";
+}
+.ql-font span[data-label="Roboto"]::before {
+  font-family: "Roboto" !important;
+} */
+
+/* Set content font-families */
+/* .ql-font-Raleway {
+  font-family: "Raleway";
+}
+.ql-font-Roboto {
+  font-family: "Roboto";
+} */
+/* We do not set Courier since it is the default font */
