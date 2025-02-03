@@ -575,6 +575,16 @@ const TextStyleComponent: React.FC = () => {
     }
   };
 
+  const [styledButtons, setStyledButtons] = useState<string[]>([]);
+
+  const handleStyledButtonClick = (buttonName: string) => {
+    setStyledButtons((prev) =>
+      prev.includes(buttonName)
+        ? prev.filter((item) => item !== buttonName)
+        : [...prev, buttonName]
+    );
+  };
+
   return (
     <div>
       <header>
@@ -598,13 +608,51 @@ const TextStyleComponent: React.FC = () => {
         </div>
 
         {/* Unicode Style Buttons */}
-        <div className="style-buttons">
-          <button onClick={() => toggleStyle("circle")}>Toggle Circle</button>
-          <button onClick={() => toggleStyle("doubleStruck")}>
-            Toggle Double-Struck
+        <div className="font-icons">
+          <button
+            className={`${
+              styledButtons.includes("circle") ? "font-icons-active" : ""
+            }`}
+            onClick={() => {
+              toggleStyle("circle");
+              handleStyledButtonClick("circle");
+            }}
+          >
+            <span>🅐</span>
           </button>
-          <button onClick={() => toggleStyle("square")}>Toggle Square</button>
-          <button onClick={() => toggleStyle("script")}>Toggle Script</button>
+          <button
+            className={`${
+              styledButtons.includes("doubleStruck") ? "font-icons-active" : ""
+            }`}
+            onClick={() => {
+              toggleStyle("doubleStruck");
+              handleStyledButtonClick("doubleStruck");
+            }}
+          >
+            <span>𝔸</span>
+          </button>
+          <button
+            className={`${
+              styledButtons.includes("square") ? "font-icons-active" : ""
+            }`}
+            onClick={() => {
+              toggleStyle("square");
+              handleStyledButtonClick("square");
+            }}
+          >
+            <span>🄰</span>
+          </button>
+          <button
+            className={`${
+              styledButtons.includes("script") ? "font-icons-active" : ""
+            }`}
+            onClick={() => {
+              toggleStyle("script");
+              handleStyledButtonClick("script");
+            }}
+          >
+            <span>𝒜</span>
+          </button>
         </div>
 
         {/* Subscription Plans */}
@@ -641,10 +689,12 @@ const TextStyleComponent: React.FC = () => {
         </div>
 
         {/* Buttons */}
-        <button onClick={convertFormat}>Convert Format</button>
-        <button onClick={copyText}>Copy Text</button>
-        <button onClick={clearAll}>Clear</button>
-        <button onClick={convertToImage}>Convert to Image</button>
+        <div className="style-buttons" style={{ marginTop: "10px" }}>
+          <button onClick={convertFormat}>Convert Format</button>
+          <button onClick={copyText}>Copy Text</button>
+          <button onClick={clearAll}>Clear</button>
+          <button onClick={convertToImage}>Convert to Image</button>
+        </div>
       </div>
 
       <footer>

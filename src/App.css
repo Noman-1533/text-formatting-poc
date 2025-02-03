@@ -275,6 +275,24 @@ header {
   background: #45a049;
 }
 
+.font-icons {
+  margin-bottom: 20px;
+}
+.font-icons button {
+  /* color: white; */
+
+  border: none;
+  /* padding: 10px 15px; */
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+  font-size: 20px;
+}
+.font-icons-active {
+  background-color: black;
+  color: white;
+}
+
 footer {
   text-align: center;
   margin-top: 20px;
