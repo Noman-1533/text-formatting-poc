@@ -405,7 +405,14 @@ const TextStyleComponent: React.FC = () => {
 
   // Font handling
   const Font = Quill.import("formats/font");
-  Font.whitelist = ["Sans Serif", "Lobster", "Raleway", "bangla"];
+  Font.whitelist = [
+    "Sans Serif",
+    "Roboto",
+    "stencil",
+    "Lobster",
+    "Raleway",
+    "bangla",
+  ];
   Quill.register(Font, true);
 
   const modules = {
@@ -438,6 +445,9 @@ const TextStyleComponent: React.FC = () => {
     ),
     Raleway: Array.from(
       "𝔄𝔅ℭ𝔇𝔈𝔉𝔊ℌℑ𝔍𝔎𝔏𝔐𝔑𝔒𝔓𝔔ℜ𝔖𝔗𝔘𝔙𝔚𝔛𝔜ℨ𝔞𝔟𝔠𝔡𝔢𝔣𝔤𝔥𝔦𝔧𝔨𝔩𝔪𝔫𝔬𝔭𝔮𝔯𝔰𝔱𝔲𝔳𝔴𝔵𝔶𝔷𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗"
+    ),
+    Roboto: Array.from(
+      "𝐀𝐁𝐂𝐃𝐄𝐅𝐆𝐇𝐈𝐉𝐊𝐋𝐌𝐍𝐎𝐏𝐐𝐑𝐒𝐓𝐔𝐕𝐖𝐗𝐘𝐙𝐚𝐛𝐜𝐝𝐞𝐟𝐠𝐡𝐢𝐣𝐤𝐥𝐦𝐧𝐨𝐩𝐪𝐫𝐬𝐭𝐮𝐯𝐰𝐱𝐲𝐳𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗"
     ),
     bangla: Array.from(
       "অআইঈউঊঋএঐওঔকখগঘঙচছজঝঞটঠডঢণতথদধনপফবভমযরলশষসহড়ঢ়য়০১২৩৪৫৬৭৮৯"
