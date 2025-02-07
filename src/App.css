@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
 @import url("https://fonts.maateen.me/bangla/font.css");
 @import url("https://fonts.cdnfonts.com/css/stencil");
+@import url("https://cdn.msar.me/fonts/kalpurush/font.css");
 /* @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"); */
 .ql-picker.ql-font {
   .ql-picker-item {
@@ -21,6 +22,7 @@
     }
   }
 }
+
 .ql-picker.ql-font .ql-picker-label[data-value="Lobster"]::before,
 .ql-picker.ql-font .ql-picker-item[data-value="Lobster"]::before {
   font-family: "Lobster", sans-serif;
@@ -49,6 +51,11 @@
   font-family: "bangla", sans-serif;
   content: "bangla";
 }
+.ql-picker.ql-font .ql-picker-label[data-value="kalpurush"]::before,
+.ql-picker.ql-font .ql-picker-item[data-value="kalpurush"]::before {
+  font-family: "kalpurush", sans-serif;
+  content: "kalpurush";
+}
 
 .ql-font-Lobster {
   font-family: "Lobster", sans-serif;
@@ -66,6 +73,9 @@
 
 .ql-font-bangla {
   font-family: "bangla", sans-serif;
+}
+.ql-font-kalpurush {
+  font-family: "kalpurush", sans-serif;
 }
 
 /*

@@ -170,7 +170,13 @@
 
 // export default TextStyleComponent;
 
-import React, { useRef, useState } from "react";
+import React, {
+  // useCallback,
+  // useEffect,
+  // useMemo,
+  useRef,
+  useState,
+} from "react";
 import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import html2canvas from "html2canvas";
@@ -411,6 +417,7 @@ const TextStyleComponent: React.FC = () => {
     "stencil",
     "Lobster",
     "Raleway",
+    "kalpurush",
     "bangla",
   ];
   Quill.register(Font, true);
@@ -437,6 +444,256 @@ const TextStyleComponent: React.FC = () => {
   const boldItalicChars: string[] = Array.from(
     "𝑨𝑩𝑪𝑫𝑬𝑭𝑮𝑯𝑰𝑱𝑲𝑳𝑴𝑵𝑶𝑷𝑸𝑹𝑺𝑻𝑼𝑽𝑾𝑿𝒀𝒁𝒂𝒃𝒄𝒅𝒆𝒇𝒈𝒉𝒊𝒋𝒌𝒍𝒎𝒏𝒐𝒑𝒒𝒓𝒔𝒕𝒖𝒗𝒘𝒙𝒚𝒛𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗"
   );
+  // const [currentFont, setCurrentFont] = useState<string>("");
+  // const [isBanglaConversionEnabled, setIsBanglaConversionEnabled] =
+  useState<boolean>(false);
+  // useEffect(() => {
+  //   const editor = quillRef.current?.getEditor();
+  //   if (editor) {
+  //     editor.on("selection-change", (range) => {
+  //       if (range) {
+  //         const format = editor.getFormat(range.index, range.length);
+  //         setCurrentFont(format.font || "Default Font");
+  //       } else {
+  //         setCurrentFont("No Selection");
+  //       }
+  //     });
+  //   }
+  // }, [quillRef]);
+  // English to Bangla mapping
+  // const englishToBanglaMap: { [key: string]: string } = useMemo(() => {
+  //   return {
+  //     q: "ৎ",
+  //     w: "ং",
+  //     e: "ে",
+  //     r: "্র",
+  //     t: "ৎ",
+  //     y: "ৈ",
+  //     u: "ু",
+  //     i: "ি",
+  //     o: "ো",
+  //     p: "প",
+  //     "[": "ৃ",
+  //     "]": "ৗ",
+  //     a: "া",
+  //     s: "স",
+  //     d: "দ",
+  //     f: "ফ",
+  //     g: "গ",
+  //     h: "হ",
+  //     j: "জ",
+  //     k: "ক",
+  //     l: "ল",
+  //     ";": ";",
+  //     "'": "'",
+  //     z: "য",
+  //     x: "ঝ",
+  //     c: "চ",
+  //     v: "ভ",
+  //     b: "ব",
+  //     n: "ন",
+  //     m: "ম",
+  //     ",": ",",
+  //     ".": "।",
+  //     "/": "/",
+  //     Q: "ৃ",
+  //     W: "ঁ",
+  //     E: "এ",
+  //     R: "র",
+  //     T: "ট",
+  //     Y: "য়",
+  //     U: "উ",
+  //     I: "ই",
+  //     O: "ও",
+  //     P: "প",
+  //     "{": "ঋ",
+  //     "}": "ৠ",
+  //     A: "আ",
+  //     S: "শ",
+  //     D: "ড",
+  //     F: "ফ",
+  //     G: "গ",
+  //     H: "হ",
+  //     J: "জ",
+  //     K: "ক",
+  //     L: "ল",
+  //     ":": ":",
+  //     '"': '"',
+  //     Z: "য",
+  //     X: "ঝ",
+  //     C: "ছ",
+  //     V: "ভ",
+  //     B: "ব",
+  //     N: "ণ",
+  //     M: "ম",
+  //     "<": "<",
+  //     ">": ">",
+  //     "?": "?",
+  //   };
+  // }, []);
+  // const convertToBangla = useCallback(
+  //   (text: string): string => {
+  //     return text
+  //       .split("")
+  //       .map((char) => englishToBanglaMap[char] || char)
+  //       .join("");
+  //   },
+  //   [englishToBanglaMap]
+  // );
+
+  // useEffect(() => {
+  //   const editor = quillRef.current?.getEditor();
+  //   if (editor) {
+  //     editor.on("text-change", () => {
+  //       if (isBanglaConversionEnabled) {
+  //         const text = editor.getText();
+  //         const banglaText = convertToBangla(text);
+  //         if (text !== banglaText) {
+  //           const range = editor.getSelection();
+  //           editor.setText(banglaText);
+  //           if (range) {
+  //             editor.setSelection(range.index, range.length);
+  //           }
+  //         }
+  //       }
+  //     });
+  //   }
+  // }, [quillRef, isBanglaConversionEnabled]);
+
+  // useEffect(() => {
+  //   console.log("current font", currentFont);
+  //   if (currentFont === "bangla" && isBanglaConversionEnabled === false)
+  //     setIsBanglaConversionEnabled(true);
+  //   else if (currentFont !== "bangla" && isBanglaConversionEnabled === true)
+  //     setIsBanglaConversionEnabled(false);
+  // }, [currentFont]);
+
+  // const avroPhoneticMap: { [key: string]: string } = {
+  //   // Vowels
+  //   a: "া",
+  //   i: "ি",
+  //   I: "ী",
+  //   u: "ু",
+  //   U: "ূ",
+  //   rri: "ৃ",
+  //   e: "ে",
+  //   oi: "ৈ",
+  //   o: "ো",
+  //   ou: "ৌ",
+
+  //   // Consonants
+  //   A: "আ",
+  //   O: "অ",
+  //   k: "ক",
+  //   kh: "খ",
+  //   g: "গ",
+  //   gh: "ঘ",
+  //   ng: "ঙ",
+  //   ch: "চ",
+  //   chh: "ছ",
+  //   j: "জ",
+  //   jh: "ঝ",
+  //   n: "ন",
+  //   t: "ত",
+  //   th: "থ",
+  //   d: "দ",
+  //   dh: "ধ",
+  //   p: "প",
+  //   ph: "ফ",
+  //   b: "ব",
+  //   bh: "ভ",
+  //   m: "ম",
+  //   y: "য",
+  //   r: "র",
+  //   l: "ল",
+  //   sh: "শ",
+  //   Sh: "ষ",
+  //   s: "স",
+  //   h: "হ",
+  //   R: "ড়",
+  //   Rh: "ঢ়",
+  //   Y: "য়",
+
+  //   // Compound Letters
+  //   kk: "ক্ক",
+  //   kkh: "ক্ষ",
+  //   ksh: "ক্ষ",
+  //   ngk: "ঙ্ক",
+  //   nch: "ঞ্চ",
+  //   nj: "ঞ্জ",
+  //   nkh: "ঙ্খ",
+  //   ngh: "ঙ্ঘ",
+  //   ndh: "ন্ধ",
+  //   nTh: "ণ্ঠ",
+  //   nD: "ণ্ড",
+  //   nt: "ন্ত",
+  //   nth: "ন্থ",
+  //   nd: "ন্দ",
+
+  //   nn: "ন্ন",
+  //   pp: "প্প",
+  //   ll: "ল্ল",
+  //   bb: "ব্ব",
+  //   bbh: "ভ্ব",
+  //   mm: "ম্ম",
+  //   yy: "য়্য",
+  //   rr: "র্র",
+
+  //   ssh: "শ্ছ",
+  //   sshh: "ষ্ঠ",
+  //   ssH: "ষ্ফ",
+  //   sSH: "স্ফ",
+
+  //   // Special Characters
+  //   ":": "ঃ",
+  //   "^": "ঁ",
+  //   ".": "।",
+  //   "\\": "্", // Halant (্)
+  // };
+
+  // const applyContextualRules = (text: string): string => {
+  //   let result = "";
+  //   let i = 0;
+
+  //   while (i < text.length) {
+  //     // Check for compound letters (e.g., "kkh", "ngk")
+  //     if (i + 2 < text.length && avroPhoneticMap[text.slice(i, i + 3)]) {
+  //       result += avroPhoneticMap[text.slice(i, i + 3)];
+  //       i += 3;
+  //     }
+  //     // Check for two-letter combinations (e.g., "kh", "ch")
+  //     else if (i + 1 < text.length && avroPhoneticMap[text.slice(i, i + 2)]) {
+  //       result += avroPhoneticMap[text.slice(i, i + 2)];
+  //       i += 2;
+  //     }
+  //     // Handle single characters
+  //     else if (avroPhoneticMap[text[i]]) {
+  //       result += avroPhoneticMap[text[i]];
+  //       i += 1;
+  //     }
+  //     // If no match, keep the original character
+  //     else {
+  //       result += text[i];
+  //       i += 1;
+  //     }
+  //   }
+
+  //   return result;
+  // };
+  // const toggleBanglaConversion = () => {
+  //   // setIsBanglaConversionEnabled((prev) => !prev);
+  //   const editor = quillRef.current?.getEditor();
+  //   const range = editor?.getSelection();
+  //   if (range && range.length) {
+  //     const text = editor?.getText(range.index, range.length);
+  //     const bangla = applyContextualRules(text as string);
+  //     if (bangla != text) {
+  //       // quillRef.current?.insertText(range.index,bangla)
+  //       editor?.deleteText(range.index, range.length);
+  //       editor?.insertText(range.index, bangla);
+  //     }
+  //   }
+  // };
 
   const fontMappings: { [key: string]: string[] } = {
     "Sans Serif": normalChars,
@@ -663,6 +920,7 @@ const TextStyleComponent: React.FC = () => {
           >
             <span>𝒜</span>
           </button>
+          {/* <button onClick={toggleBanglaConversion}>Write Bangla</button> */}
         </div>
 
         {/* Subscription Plans */}
