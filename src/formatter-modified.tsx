@@ -4,7 +4,7 @@ import "react-quill/dist/quill.snow.css";
 import html2canvas from "html2canvas";
 
 import OmicronLab from "./avro-lib";
-
+let isBanglaMode = false;
 export default function TextStyleComponent() {
   const quillRef = useRef<ReactQuill>(null);
   const [appliedStyles, setAppliedStyles] = useState<Map<number, string>>(
@@ -240,9 +240,10 @@ export default function TextStyleComponent() {
     "Lobster",
     "Raleway",
     "kalpurush",
-    "bangla",
+    "বাংলা",
   ];
   Quill.register(Font, true);
+  const banglaFont = ["বাংলা", "kalpurush"];
 
   const modules = {
     toolbar: [
@@ -444,9 +445,8 @@ export default function TextStyleComponent() {
         : [...prev, buttonName]
     );
   };
-  const [isBanglaMode, setIsBanglaMode] = useState(false);
+  // const [isBanglaMode, setIsBanglaMode] = useState(false);
 
-  const banglaFont = ["bangla", "kalpurush"];
   // useEffect(() => {
   //   console.log(window.Avro);
   //   if (window.Avro) {
@@ -589,90 +589,342 @@ export default function TextStyleComponent() {
   //     setIsBanglaMode(false);
   //   }
   // };
-  const handleSelectionChange = () => {
-    const quill = quillRef.current?.getEditor();
-    if (quill) {
-      const currentFormat = quill.getFormat();
-      console.log("font is", currentFormat.font);
-      if (banglaFont.includes(currentFormat.font)) {
-        setIsBanglaMode(true);
-      } else {
-        setIsBanglaMode(false);
-      }
-    }
+  const handleSelectionChange = (event: any) => {
+    // console.log(event);
+    // const quill = quillRef.current?.getEditor();
+    // if (quill) {
+    //   const currentFormat = quill.getFormat();
+    //   console.log("font is", currentFormat.font);
+    //   if (banglaFont.includes(currentFormat.font)) {
+    //     isBanglaMode = true;
+    //   } else if (isBanglaMode && event.key === "Enter") {
+    //     console.log("isBanglaMode");
+    //     isBanglaMode = true;
+    //   } else {
+    //     console.log("make it false");
+    //     isBanglaMode = false;
+    //   }
+    // }
   };
+  // useEffect(() => {
+  //   const quillInstance = quillRef.current?.getEditor();
+  //   if (!quillInstance) return;
+  //   // if (isBanglaMode)
+  //   {
+  //     const handleKeyDown = (event: any) => {
+  //       console.log(isBanglaMode);
+  //       console.log(event.key);
+  //       if (event.key !== " " && event.key !== "Enter") return;
+  //       const selection = quillInstance.getSelection();
+  //       console.log("selecting", selection);
+  //       if (!selection) return;
+  //       const currentFormat = quillInstance.getFormat(selection);
+  //       if (!banglaFont.includes(currentFormat.font)) return;
+  //       const index = selection.index;
+  //       let textBeforeCursor = quillInstance
+  //         .getText(0, index)
+  //         .replace(/\n$/, "");
+  //       const match = textBeforeCursor.match(/(\S+)$/); // Match last word
+
+  //       if (match) {
+  //         const lastWord = match[1];
+  //         const wordStartIndex = index - lastWord.length;
+  //         const replacement = OmicronLab.Avro.Phonetic.parse(lastWord); // Your custom conversion logic
+
+  //         event.preventDefault();
+
+  //         if (event.key === " ") {
+  //           // quillInstance.root.style.fontFamily = "bangla";
+  //           quillInstance.deleteText(wordStartIndex, lastWord.length);
+  //           quillInstance.insertText(
+  //             wordStartIndex,
+  //             replacement,
+  //             currentFormat
+  //           );
+  //           quillInstance.insertText(
+  //             wordStartIndex + replacement.length,
+  //             " ",
+  //             currentFormat
+  //           );
+  //           // quillInstance.setSelection(
+  //           //   wordStartIndex,
+  //           //   wordStartIndex + replacement.length + 1
+  //           // );
+  //         } else if (event.key === "Enter") {
+  //           // console.log("enter");
+  //           // quillInstance.root.style.fontFamily = "bangla";
+  //           quillInstance.deleteText(wordStartIndex - 1, lastWord.length);
+  //           quillInstance.insertText(
+  //             wordStartIndex - 1,
+  //             replacement,
+  //             currentFormat
+  //           );
+  //           // quillInstance.insertText(wordStartIndex + replacement.length, "\n");
+  //           // quillInstance.setSelection(
+  //           //   wordStartIndex,
+  //           //   wordStartIndex + replacement.length + 1
+  //           // );
+  //         }
+  //       }
+  //     };
+
+  //     quillInstance.root.addEventListener("keydown", handleKeyDown);
+
+  //     return () => {
+  //       quillInstance.root.removeEventListener("keydown", handleKeyDown);
+  //     };
+  //   }
+  // }, []);
+  // useEffect(() => {
+  //   const quillInstance = quillRef.current?.getEditor();
+  //   if (!quillInstance) return;
+
+  //   const handleKeyDown = (event: KeyboardEvent) => {
+  //     const selection = quillInstance.getSelection();
+  //     if (!selection) return;
+  //     const currentFormat = quillInstance.getFormat(selection.index - 1, 1);
+  //     if (banglaFont.includes(currentFormat.font)) return;
+
+  //     if (event.key === "Enter") {
+  //       event.preventDefault(); // Prevent the default behavior
+
+  //       // Get the format of the current line
+  //       const currentFont = currentFormat.font; // Get the current font
+
+  //       // Insert a new line with the same font
+  //       quillInstance.insertText(selection.index, "", { font: currentFont });
+  //       quillInstance.setSelection(selection.index + 1, 0); // Move the cursor to the new line
+  //     }
+  //   };
+
+  //   quillInstance.root.addEventListener("keydown", handleKeyDown);
+
+  //   return () => {
+  //     quillInstance.root.removeEventListener("keydown", handleKeyDown);
+  //   };
+  // }, []);
+
+  // useEffect(() => {
+  //   const quillInstance = quillRef.current?.getEditor();
+  //   if (!quillInstance) return;
+
+  //   const handleKeyDown = (event: KeyboardEvent) => {
+  //     const selection = quillInstance.getSelection();
+  //     if (!selection || selection.index === 0) return;
+
+  //     const index = selection.index;
+  //     const currentFormat = quillInstance.getFormat(selection.index - 1, 1);
+  //     const currentFont = currentFormat.font; // Store current font
+
+  //     // ✅ Font retention for all fonts when Enter is pressed
+  //     if (event.key === "Enter" && !isBanglaMode) {
+  //       console.log("enter");
+  //       event.preventDefault(); // Prevent default behavior
+  //       quillInstance.insertText(selection.index, "", currentFormat);
+  //       // quillInstance.setSelection(selection.index + 1, 0,currentFormat);
+  //       return; // Prevent further execution
+  //     }
+
+  //     // ✅ Avro conversion (Only if isBanglaMode is true and font is Bangla)
+  //     if (isBanglaMode && (event.key === " " || event.key === "Enter")) {
+  //       console.log(event.key);
+  //       let textBeforeCursor = quillInstance
+  //         .getText(0, index)
+  //         .replace(/\n$/, "");
+  //       const match = textBeforeCursor.match(/(\S+)$/); // Match last word
+
+  //       if (match) {
+  //         const lastWord = match[1];
+  //         const wordStartIndex = index - lastWord.length;
+  //         const replacement = OmicronLab.Avro.Phonetic.parse(lastWord);
+
+  //         event.preventDefault(); // Prevent default behavior
+
+  //         // quillInstance.deleteText(wordStartIndex, lastWord.length);
+  //         // quillInstance.insertText(wordStartIndex, replacement, {
+  //         //   font: currentFont,
+  //         // }); // Preserve font
+  //         // quillInstance.insertText(
+  //         //   wordStartIndex + replacement.length,
+  //         //   event.key === " " ? " " : "\n",
+  //         //   { font: currentFont }
+  //         // );
+
+  //         // // Set selection at the end
+  //         // quillInstance.setSelection(
+  //         //   wordStartIndex + replacement.length + 1,
+  //         //   0
+  //         // );
+  //         if (event.key === " ") {
+  //           // quillInstance.root.style.fontFamily = "bangla";
+  //           quillInstance.deleteText(wordStartIndex, lastWord.length);
+  //           quillInstance.insertText(
+  //             wordStartIndex,
+  //             replacement,
+  //             currentFormat
+  //           );
+  //           quillInstance.insertText(
+  //             wordStartIndex + replacement.length,
+  //             " ",
+  //             currentFormat
+  //           );
+  //           // quillInstance.setSelection(
+  //           //   wordStartIndex,
+  //           //   wordStartIndex + replacement.length + 1
+  //           // );
+  //         } else if (event.key === "Enter") {
+  //           // quillInstance.root.style.fontFamily = "bangla";
+  //           quillInstance.deleteText(wordStartIndex - 1, lastWord.length);
+  //           quillInstance.insertText(
+  //             wordStartIndex - 1,
+  //             replacement,
+  //             currentFormat
+  //           );
+  //           // quillInstance.insertText(wordStartIndex + replacement.length, "\n");
+  //           // quillInstance.setSelection(
+  //           //   wordStartIndex,
+  //           //   wordStartIndex + replacement.length + 1
+  //           // );
+  //         }
+  //       }
+  //     } else console.log("from outside", event.key);
+  //   };
+
+  //   quillInstance.root.addEventListener("keydown", handleKeyDown);
+
+  //   return () => {
+  //     quillInstance.root.removeEventListener("keydown", handleKeyDown);
+  //   };
+  // }, [isBanglaMode]);
+
   useEffect(() => {
     const quillInstance = quillRef.current?.getEditor();
     if (!quillInstance) return;
-    if (isBanglaMode) {
-      const handleKeyDown = (event: any) => {
-        if (event.key !== " " && event.key !== "Enter") return;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      console.log("key ", event.key);
+      if (event.key !== " " && event.key !== "Enter") return;
+      console.log("enter in effect");
+      const selection = quillInstance.getSelection();
+      if (!selection || selection.index === 0) return;
 
-        const selection = quillInstance.getSelection();
-        if (!selection || selection.index === 0) return;
+      const index = selection.index;
+      const currentFormat = quillInstance.getFormat(selection);
+      let textBeforeCursor = quillInstance.getText(0, index).replace(/\n$/, "");
+      console.log("text before cursor", textBeforeCursor);
+      const match = textBeforeCursor.match(/(\S+)$/); // Match last word
 
-        const index = selection.index;
-        let textBeforeCursor = quillInstance
-          .getText(0, index)
-          .replace(/\n$/, "");
-        const match = textBeforeCursor.match(/(\S+)$/); // Match last word
+      console.log("match", match);
+      if (match) {
+        const lastWord = match[1];
+        const wordStartIndex = index - lastWord.length;
+        const replacement = OmicronLab.Avro.Phonetic.parse(lastWord);
+        event.preventDefault();
 
-        if (match) {
-          const lastWord = match[1];
-          const wordStartIndex = index - lastWord.length;
-          const replacement = OmicronLab.Avro.Phonetic.parse(lastWord); // Your custom conversion logic
-
-          event.preventDefault();
-
-          const currentFormat = quillInstance.getFormat(selection);
-
-          if (event.key === " ") {
-            quillInstance.root.style.fontFamily = "bangla";
-            quillInstance.deleteText(wordStartIndex, lastWord.length);
-            quillInstance.insertText(
-              wordStartIndex,
-              replacement,
-              currentFormat
-            );
-            quillInstance.insertText(
-              wordStartIndex + replacement.length,
-              " ",
-              currentFormat
-            );
-            // quillInstance.setSelection(
-            //   wordStartIndex,
-            //   wordStartIndex + replacement.length + 1
-            // );
-          } else if (event.key === "Enter") {
-            quillInstance.root.style.fontFamily = "bangla";
+        if (event.key === " " && banglaFont.includes(currentFormat.font)) {
+          quillInstance.deleteText(wordStartIndex, lastWord.length);
+          quillInstance.insertText(wordStartIndex, replacement, currentFormat);
+          quillInstance.insertText(
+            wordStartIndex + replacement.length,
+            " ",
+            currentFormat
+          );
+        } else if (event.key === "Enter") {
+          console.log("is Bangla mode", isBanglaMode);
+          if (banglaFont.includes(currentFormat.font)) {
             quillInstance.deleteText(wordStartIndex - 1, lastWord.length);
             quillInstance.insertText(
               wordStartIndex - 1,
               replacement,
               currentFormat
             );
-            // quillInstance.insertText(wordStartIndex + replacement.length, "\n");
-            // quillInstance.setSelection(
-            //   wordStartIndex,
-            //   wordStartIndex + replacement.length + 1
-            // );
-          }
+            quillInstance.insertText(selection.index, "", currentFormat);
+          } else quillInstance.insertText(selection.index, "", currentFormat);
         }
-      };
+      }
+    };
 
-      quillInstance.root.addEventListener("keydown", handleKeyDown);
+    quillInstance.root.addEventListener("keydown", handleKeyDown);
 
-      return () => {
-        quillInstance.root.removeEventListener("keydown", handleKeyDown);
-      };
-    }
+    return () => {
+      quillInstance.root.removeEventListener("keydown", handleKeyDown);
+    };
   }, [isBanglaMode]);
 
+  // useEffect(() => {
+  //   const quillInstance = quillRef.current?.getEditor();
+  //   if (!quillInstance) return;
+  //   const handleKeyDown = (event: any) => {
+  //     if (event.key === "Enter") {
+  //       const selection = quillInstance.getSelection();
+  //       if (!selection || selection.length == 0) return;
+  //       const currentFormat = quillInstance.getFormat(selection);
+  //       quillInstance.deleteText(selection.length - 1, selection.length);
+  //       quillInstance.insertText(selection.length - 1, "\n", currentFormat);
+  //     }
+  //   };
+  //   quillInstance.root.addEventListener("keydown", handleKeyDown);
+
+  //   return () => {
+  //     quillInstance.root.removeEventListener("keydown", handleKeyDown);
+  //   };
+  // }, [currentFont]);
+
   // useAvro(quillRef, { bangla: isBanglaMode, fontName: currentFont });
+
+  // useEffect(() => {
+  //   const quillInstance = quillRef.current?.getEditor();
+  //   if (!quillInstance) return;
+
+  //   const handleKeyDown = (event: KeyboardEvent) => {
+  //     if (event.key === "Enter") {
+  //       event.preventDefault(); // Prevent default behavior
+
+  //       const selection = quillInstance.getSelection();
+  //       if (!selection) return;
+
+  //       const currentFormat = quillInstance.getFormat(selection.index - 1, 1); // Get current formatting
+  //       const currentFont = currentFormat.font; // Get current font
+  //       console.log("current font", currentFormat.font);
+  //       // Handle Avro conversion if in Bangla mode
+  //       if (banglaFont.includes(currentFont)) {
+  //         const textBeforeCursor = quillInstance
+  //           .getText(0, selection.index)
+  //           .replace(/\n$/, ""); // Get text before cursor
+  //         const match = textBeforeCursor.match(/(\S+)$/); // Match the last word
+  //         console.log("enter key press");
+  //         if (match) {
+  //           const lastWord = match[1];
+  //           const wordStartIndex = selection.index - lastWord.length;
+  //           const replacement = OmicronLab.Avro.Phonetic.parse(lastWord); // Convert to Bangla
+
+  //           // Replace the last word with the converted Bangla text
+  //           quillInstance.deleteText(wordStartIndex, lastWord.length);
+  //           quillInstance.insertText(
+  //             wordStartIndex,
+  //             replacement,
+  //             currentFormat
+  //           );
+  //         }
+  //       }
+
+  //       // Insert a new line with the current font
+  //       quillInstance.insertText(selection.index, "", { font: currentFont });
+  //       quillInstance.setSelection(selection.index + 1, 0); // Move cursor to the new line
+  //     }
+  //   };
+
+  //   quillInstance.root.addEventListener("keydown", handleKeyDown);
+
+  //   return () => {
+  //     quillInstance.root.removeEventListener("keydown", handleKeyDown);
+  //   };
+  // }, []); // Re-run effect when Bangla mode changes
+
   const [currentLength, setCurrentLength] = useState(0);
   const handleKeyUp = () => {
     if (quillRef.current) {
       const text = quillRef.current.getEditor().getText();
+
       setCurrentLength(
         text[text.length - 1] === "\n" ? text.length - 1 : text.length
       );

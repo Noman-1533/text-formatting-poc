@@ -46,8 +46,8 @@
   content: "Raleway";
 }
 
-.ql-picker.ql-font .ql-picker-label[data-value="bangla"]::before,
-.ql-picker.ql-font .ql-picker-item[data-value="bangla"]::before {
+.ql-picker.ql-font .ql-picker-label[data-value="বাংলা"]::before,
+.ql-picker.ql-font .ql-picker-item[data-value="বাংলা"]::before {
   font-family: "bangla", sans-serif;
   content: "bangla";
 }
@@ -71,8 +71,9 @@
   font-family: "Raleway", sans-serif;
 }
 
-.ql-font-bangla {
+.ql-font-বাংলা {
   font-family: "bangla", sans-serif;
+  font-size: 16px;
 }
 .ql-font-kalpurush {
   font-family: "kalpurush", sans-serif;
