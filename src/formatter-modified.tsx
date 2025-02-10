@@ -589,23 +589,23 @@ export default function TextStyleComponent() {
   //     setIsBanglaMode(false);
   //   }
   // };
-  const handleSelectionChange = (event: any) => {
-    // console.log(event);
-    // const quill = quillRef.current?.getEditor();
-    // if (quill) {
-    //   const currentFormat = quill.getFormat();
-    //   console.log("font is", currentFormat.font);
-    //   if (banglaFont.includes(currentFormat.font)) {
-    //     isBanglaMode = true;
-    //   } else if (isBanglaMode && event.key === "Enter") {
-    //     console.log("isBanglaMode");
-    //     isBanglaMode = true;
-    //   } else {
-    //     console.log("make it false");
-    //     isBanglaMode = false;
-    //   }
-    // }
-  };
+  // const handleSelectionChange = (event: any) => {
+  // console.log(event);
+  // const quill = quillRef.current?.getEditor();
+  // if (quill) {
+  //   const currentFormat = quill.getFormat();
+  //   console.log("font is", currentFormat.font);
+  //   if (banglaFont.includes(currentFormat.font)) {
+  //     isBanglaMode = true;
+  //   } else if (isBanglaMode && event.key === "Enter") {
+  //     console.log("isBanglaMode");
+  //     isBanglaMode = true;
+  //   } else {
+  //     console.log("make it false");
+  //     isBanglaMode = false;
+  //   }
+  // }
+  // };
   // useEffect(() => {
   //   const quillInstance = quillRef.current?.getEditor();
   //   if (!quillInstance) return;
@@ -967,7 +967,7 @@ export default function TextStyleComponent() {
           theme="snow"
           modules={modules}
           onKeyUp={handleKeyUp}
-          onChangeSelection={handleSelectionChange}
+          // onChangeSelection={handleSelectionChange}
           style={{ height: "20vh", marginBottom: "40px" }}
         />
         <div className="word-count">{currentLength || 0} Characters</div>
