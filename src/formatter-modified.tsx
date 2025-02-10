@@ -731,7 +731,7 @@ export default function TextStyleComponent() {
               handleStyledButtonClick("circle");
             }}
           >
-            <span>🅐</span>
+            <span>🅐 circle</span>
           </button>
           <button
             className={`${
@@ -742,7 +742,7 @@ export default function TextStyleComponent() {
               handleStyledButtonClick("doubleStruck");
             }}
           >
-            <span>𝔸</span>
+            <span>𝔸 double-struck</span>
           </button>
           <button
             className={`${
@@ -753,7 +753,7 @@ export default function TextStyleComponent() {
               handleStyledButtonClick("square");
             }}
           >
-            <span>🄰</span>
+            <span>🄰 square</span>
           </button>
           <button
             className={`${
@@ -764,13 +764,13 @@ export default function TextStyleComponent() {
               handleStyledButtonClick("script");
             }}
           >
-            <span>𝒜</span>
+            <span>𝒜 script</span>
           </button>
           {/* <button onClick={toggleBanglaConversion}>Write Bangla</button> */}
         </div>
 
         {/* Subscription Plans */}
-        <div className="subscription-plans">
+        {/* <div className="subscription-plans">
           <div className="plan">
             <h3>Free Trial</h3>
             <p>7 days full features</p>
@@ -788,7 +788,7 @@ export default function TextStyleComponent() {
               Select
             </button>
           </div>
-        </div>
+        </div> */}
 
         {/* Preview Box */}
         <div className="preview-box">
