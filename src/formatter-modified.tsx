@@ -1,7 +1,9 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import html2canvas from "html2canvas";
+
+import OmicronLab from "./avro-lib";
 
 export default function TextStyleComponent() {
   const quillRef = useRef<ReactQuill>(null);
@@ -232,7 +234,7 @@ export default function TextStyleComponent() {
 
   const Font = Quill.import("formats/font");
   Font.whitelist = [
-    "Sans Serif",
+    "sans-serif",
     "Roboto",
     "stencil",
     "Lobster",
@@ -442,6 +444,259 @@ export default function TextStyleComponent() {
         : [...prev, buttonName]
     );
   };
+  const [isBanglaMode, setIsBanglaMode] = useState(false);
+
+  const banglaFont = ["bangla", "kalpurush"];
+  // useEffect(() => {
+  //   console.log(window.Avro);
+  //   if (window.Avro) {
+  //     console.log("init");
+  //     window.Avro.init();
+  //   }
+  // }, []);
+  // useEffect(() => {
+  //   const checkAvroLoaded = setInterval(() => {
+  //     if (window.Avro) {
+  //       clearInterval(checkAvroLoaded);
+  //       window.Avro.init(); // Initialize jsAvroPhonetic
+  //     }
+  //   }, 500);
+
+  //   return () => clearInterval(checkAvroLoaded);
+  // }, []);
+  // useEffect(() => {
+  //   // Dynamically load the script
+  //   const script = document.createElement("script");
+  //   script.src =
+  //     "https://torifat.github.io/jsAvroPhonetic/libs/avro-keyboard/dist/avro-v1.1.4.min.js";
+  //   script.async = true;
+  //   script.onload = () => {
+  //     console.log("Avro script loaded!", window.Avro);
+  //     if (window.Avro) {
+  //       console.log("init");
+  //       window.Avro.init();
+  //     }
+  //   };
+  //   document.body.appendChild(script);
+
+  //   return () => {
+  //     document.body.removeChild(script);
+  //   };
+  // }, []);
+
+  // useEffect(() => {
+  //   // Function to load a script dynamically
+  //   const loadScript = (src: string, onLoad?: () => void) => {
+  //     const script = document.createElement("script");
+  //     script.src = src;
+  //     script.async = true;
+  //     if (onLoad) script.onload = onLoad;
+  //     document.body.appendChild(script);
+  //   };
+
+  //   // Load jQuery first
+  //   loadScript("https://code.jquery.com/jquery-3.6.0.min.js", () => {
+  //     console.log("jQuery loaded!");
+
+  //     // Then load Avro after jQuery is available
+  //     loadScript(
+  //       "https://torifat.github.io/jsAvroPhonetic/libs/avro-keyboard/dist/avro-v1.1.4.min.js",
+  //       () => {
+  //         console.log("Avro script loaded!", window.Avro);
+  //         if (window.Avro) {
+  //           window.Avro.init();
+  //         }
+  //       }
+  //     );
+  //   });
+
+  //   return () => {
+  //     // Cleanup: remove scripts when the component unmounts
+  //     document
+  //       .querySelectorAll("script[src*='jquery'], script[src*='avro']")
+  //       .forEach((script) => {
+  //         document.body.removeChild(script);
+  //       });
+  //   };
+  // }, []);
+
+  //   useEffect(() => {
+  //     <script
+  //   src="https://torifat.github.io/jsAvroPhonetic/libs/avro-keyboard/dist/avro-v1.1.4.min.js"
+  //   type="text/javascript"
+  //   // charset="utf-8"
+  // >
+
+  // $(function () {
+
+  //         $("textarea, input[type=text]").avro();
+  //       });
+  // </script>;
+  // <script type="text/javascript" >
+
+  //     </script>
+  //     // Function to dynamically load scripts
+  //     const loadScript = (src: string, onLoad?: () => void) => {
+  //       const existingScript = document.querySelector(`script[src="${src}"]`);
+  //       if (!existingScript) {
+  //         const script = document.createElement("script");
+  //         script.src = src;
+  //         script.async = true;
+  //         if (onLoad) script.onload = onLoad;
+  //         document.body.appendChild(script);
+  //       } else if (onLoad) {
+  //         onLoad();
+  //       }
+  //     };
+
+  //     // Load jQuery first
+  //     loadScript("https://code.jquery.com/jquery-3.6.0.min.js", () => {
+  //       console.log("✅ jQuery loaded!");
+
+  //       // Load Avro AFTER jQuery is ready
+  //       const val = loadScript(
+  //         "https://torifat.github.io/jsAvroPhonetic/libs/avro-keyboard/dist/avro-v1.1.4.min.js",
+  //         () => {
+  //           console.log("loaded", val);
+  //           console.log("✅ Avro script loaded!");
+
+  //           // Check Avro after script is loaded
+  //           // setTimeout(() => {
+  //           if (window.Avro) {
+  //             console.log("✅ Avro initialized:", window.Avro);
+  //             window.Avro.init();
+  //           } else {
+  //             console.error("❌ Avro is still undefined!");
+  //           }
+  //           // }, 500); // Give some time for script execution
+  //         }
+  //       );
+  //     });
+
+  //     return () => {
+  //       // Cleanup scripts when component unmounts
+  //       document
+  //         .querySelectorAll("script[src*='jquery'], script[src*='avro']")
+  //         .forEach((script) => {
+  //           document.body.removeChild(script);
+  //         });
+  //     };
+  //   }, []);
+  // const handleFontChange = (font: string) => {
+  //   if (font === "bangla") {
+  //     setIsBanglaMode(true);
+  //   } else {
+  //     setIsBanglaMode(false);
+  //   }
+  // };
+  const handleSelectionChange = () => {
+    const quill = quillRef.current?.getEditor();
+    if (quill) {
+      const currentFormat = quill.getFormat();
+      console.log("font is", currentFormat.font);
+      if (banglaFont.includes(currentFormat.font)) {
+        setIsBanglaMode(true);
+      } else {
+        setIsBanglaMode(false);
+      }
+    }
+  };
+  useEffect(() => {
+    const quillInstance = quillRef.current?.getEditor();
+    if (!quillInstance) return;
+    if (isBanglaMode) {
+      const handleKeyDown = (event: any) => {
+        if (event.key !== " " && event.key !== "Enter") return;
+
+        const selection = quillInstance.getSelection();
+        if (!selection || selection.index === 0) return;
+
+        const index = selection.index;
+        let textBeforeCursor = quillInstance
+          .getText(0, index)
+          .replace(/\n$/, "");
+        const match = textBeforeCursor.match(/(\S+)$/); // Match last word
+
+        if (match) {
+          const lastWord = match[1];
+          const wordStartIndex = index - lastWord.length;
+          const replacement = OmicronLab.Avro.Phonetic.parse(lastWord); // Your custom conversion logic
+
+          event.preventDefault();
+
+          const currentFormat = quillInstance.getFormat(selection);
+
+          if (event.key === " ") {
+            quillInstance.root.style.fontFamily = "bangla";
+            quillInstance.deleteText(wordStartIndex, lastWord.length);
+            quillInstance.insertText(
+              wordStartIndex,
+              replacement,
+              currentFormat
+            );
+            quillInstance.insertText(
+              wordStartIndex + replacement.length,
+              " ",
+              currentFormat
+            );
+            // quillInstance.setSelection(
+            //   wordStartIndex,
+            //   wordStartIndex + replacement.length + 1
+            // );
+          } else if (event.key === "Enter") {
+            quillInstance.root.style.fontFamily = "bangla";
+            quillInstance.deleteText(wordStartIndex - 1, lastWord.length);
+            quillInstance.insertText(
+              wordStartIndex - 1,
+              replacement,
+              currentFormat
+            );
+            // quillInstance.insertText(wordStartIndex + replacement.length, "\n");
+            // quillInstance.setSelection(
+            //   wordStartIndex,
+            //   wordStartIndex + replacement.length + 1
+            // );
+          }
+        }
+      };
+
+      quillInstance.root.addEventListener("keydown", handleKeyDown);
+
+      return () => {
+        quillInstance.root.removeEventListener("keydown", handleKeyDown);
+      };
+    }
+  }, [isBanglaMode]);
+
+  // useAvro(quillRef, { bangla: isBanglaMode, fontName: currentFont });
+  const [currentLength, setCurrentLength] = useState(0);
+  const handleKeyUp = () => {
+    if (quillRef.current) {
+      const text = quillRef.current.getEditor().getText();
+      setCurrentLength(
+        text[text.length - 1] === "\n" ? text.length - 1 : text.length
+      );
+    }
+    // if(isBanglaMode())
+    // if (isBanglaMode && window.Avro) {
+    //   const quill = quillRef.current?.getEditor();
+    //   if (quill) {
+    //     const range = quill.getSelection();
+    //     if (range) {
+    //       const text = quill.getText(range.index - 10, 10);
+    //       const transformed = window.Avro.phonetic(text);
+    //       quill.deleteText(range.index - text.length, text.length);
+    //       quill.insertText(
+    //         range.index - text.length,
+    //         transformed,
+    //         "font",
+    //         "bangla"
+    //       );
+    //       // quill.setSelection(range.index - text.length + transformed.length);
+    //     }
+    //   }
+    // }
+  };
 
   return (
     <div>
@@ -459,11 +714,11 @@ export default function TextStyleComponent() {
           ref={quillRef}
           theme="snow"
           modules={modules}
+          onKeyUp={handleKeyUp}
+          onChangeSelection={handleSelectionChange}
           style={{ height: "20vh", marginBottom: "40px" }}
         />
-        <div className="word-count">
-          {quillRef.current?.editor?.getText().length || 0} Characters
-        </div>
+        <div className="word-count">{currentLength || 0} Characters</div>
 
         {/* Unicode Style Buttons */}
         <div className="font-icons">
