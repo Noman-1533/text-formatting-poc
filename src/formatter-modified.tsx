@@ -457,6 +457,7 @@ export default function TextStyleComponent() {
 
     const index = selection.index;
     const currentFormat = quillInstance.getFormat(selection);
+    if (event.key === " " && !banglaFont.includes(currentFormat.font)) return;
     let textBeforeCursor = quillInstance.getText(0, index).replace(/\n$/, "");
     console.log("text before cursor", textBeforeCursor);
     const match = textBeforeCursor.match(/(\S+)$/);
