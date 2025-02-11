@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import html2canvas from "html2canvas";
@@ -445,480 +445,51 @@ export default function TextStyleComponent() {
         : [...prev, buttonName]
     );
   };
-  // const [isBanglaMode, setIsBanglaMode] = useState(false);
 
-  // useEffect(() => {
-  //   console.log(window.Avro);
-  //   if (window.Avro) {
-  //     console.log("init");
-  //     window.Avro.init();
-  //   }
-  // }, []);
-  // useEffect(() => {
-  //   const checkAvroLoaded = setInterval(() => {
-  //     if (window.Avro) {
-  //       clearInterval(checkAvroLoaded);
-  //       window.Avro.init(); // Initialize jsAvroPhonetic
-  //     }
-  //   }, 500);
-
-  //   return () => clearInterval(checkAvroLoaded);
-  // }, []);
-  // useEffect(() => {
-  //   // Dynamically load the script
-  //   const script = document.createElement("script");
-  //   script.src =
-  //     "https://torifat.github.io/jsAvroPhonetic/libs/avro-keyboard/dist/avro-v1.1.4.min.js";
-  //   script.async = true;
-  //   script.onload = () => {
-  //     console.log("Avro script loaded!", window.Avro);
-  //     if (window.Avro) {
-  //       console.log("init");
-  //       window.Avro.init();
-  //     }
-  //   };
-  //   document.body.appendChild(script);
-
-  //   return () => {
-  //     document.body.removeChild(script);
-  //   };
-  // }, []);
-
-  // useEffect(() => {
-  //   // Function to load a script dynamically
-  //   const loadScript = (src: string, onLoad?: () => void) => {
-  //     const script = document.createElement("script");
-  //     script.src = src;
-  //     script.async = true;
-  //     if (onLoad) script.onload = onLoad;
-  //     document.body.appendChild(script);
-  //   };
-
-  //   // Load jQuery first
-  //   loadScript("https://code.jquery.com/jquery-3.6.0.min.js", () => {
-  //     console.log("jQuery loaded!");
-
-  //     // Then load Avro after jQuery is available
-  //     loadScript(
-  //       "https://torifat.github.io/jsAvroPhonetic/libs/avro-keyboard/dist/avro-v1.1.4.min.js",
-  //       () => {
-  //         console.log("Avro script loaded!", window.Avro);
-  //         if (window.Avro) {
-  //           window.Avro.init();
-  //         }
-  //       }
-  //     );
-  //   });
-
-  //   return () => {
-  //     // Cleanup: remove scripts when the component unmounts
-  //     document
-  //       .querySelectorAll("script[src*='jquery'], script[src*='avro']")
-  //       .forEach((script) => {
-  //         document.body.removeChild(script);
-  //       });
-  //   };
-  // }, []);
-
-  //   useEffect(() => {
-  //     <script
-  //   src="https://torifat.github.io/jsAvroPhonetic/libs/avro-keyboard/dist/avro-v1.1.4.min.js"
-  //   type="text/javascript"
-  //   // charset="utf-8"
-  // >
-
-  // $(function () {
-
-  //         $("textarea, input[type=text]").avro();
-  //       });
-  // </script>;
-  // <script type="text/javascript" >
-
-  //     </script>
-  //     // Function to dynamically load scripts
-  //     const loadScript = (src: string, onLoad?: () => void) => {
-  //       const existingScript = document.querySelector(`script[src="${src}"]`);
-  //       if (!existingScript) {
-  //         const script = document.createElement("script");
-  //         script.src = src;
-  //         script.async = true;
-  //         if (onLoad) script.onload = onLoad;
-  //         document.body.appendChild(script);
-  //       } else if (onLoad) {
-  //         onLoad();
-  //       }
-  //     };
-
-  //     // Load jQuery first
-  //     loadScript("https://code.jquery.com/jquery-3.6.0.min.js", () => {
-  //       console.log("✅ jQuery loaded!");
-
-  //       // Load Avro AFTER jQuery is ready
-  //       const val = loadScript(
-  //         "https://torifat.github.io/jsAvroPhonetic/libs/avro-keyboard/dist/avro-v1.1.4.min.js",
-  //         () => {
-  //           console.log("loaded", val);
-  //           console.log("✅ Avro script loaded!");
-
-  //           // Check Avro after script is loaded
-  //           // setTimeout(() => {
-  //           if (window.Avro) {
-  //             console.log("✅ Avro initialized:", window.Avro);
-  //             window.Avro.init();
-  //           } else {
-  //             console.error("❌ Avro is still undefined!");
-  //           }
-  //           // }, 500); // Give some time for script execution
-  //         }
-  //       );
-  //     });
-
-  //     return () => {
-  //       // Cleanup scripts when component unmounts
-  //       document
-  //         .querySelectorAll("script[src*='jquery'], script[src*='avro']")
-  //         .forEach((script) => {
-  //           document.body.removeChild(script);
-  //         });
-  //     };
-  //   }, []);
-  // const handleFontChange = (font: string) => {
-  //   if (font === "bangla") {
-  //     setIsBanglaMode(true);
-  //   } else {
-  //     setIsBanglaMode(false);
-  //   }
-  // };
-  // const handleSelectionChange = (event: any) => {
-  // console.log(event);
-  // const quill = quillRef.current?.getEditor();
-  // if (quill) {
-  //   const currentFormat = quill.getFormat();
-  //   console.log("font is", currentFormat.font);
-  //   if (banglaFont.includes(currentFormat.font)) {
-  //     isBanglaMode = true;
-  //   } else if (isBanglaMode && event.key === "Enter") {
-  //     console.log("isBanglaMode");
-  //     isBanglaMode = true;
-  //   } else {
-  //     console.log("make it false");
-  //     isBanglaMode = false;
-  //   }
-  // }
-  // };
-  // useEffect(() => {
-  //   const quillInstance = quillRef.current?.getEditor();
-  //   if (!quillInstance) return;
-  //   // if (isBanglaMode)
-  //   {
-  //     const handleKeyDown = (event: any) => {
-  //       console.log(isBanglaMode);
-  //       console.log(event.key);
-  //       if (event.key !== " " && event.key !== "Enter") return;
-  //       const selection = quillInstance.getSelection();
-  //       console.log("selecting", selection);
-  //       if (!selection) return;
-  //       const currentFormat = quillInstance.getFormat(selection);
-  //       if (!banglaFont.includes(currentFormat.font)) return;
-  //       const index = selection.index;
-  //       let textBeforeCursor = quillInstance
-  //         .getText(0, index)
-  //         .replace(/\n$/, "");
-  //       const match = textBeforeCursor.match(/(\S+)$/); // Match last word
-
-  //       if (match) {
-  //         const lastWord = match[1];
-  //         const wordStartIndex = index - lastWord.length;
-  //         const replacement = OmicronLab.Avro.Phonetic.parse(lastWord); // Your custom conversion logic
-
-  //         event.preventDefault();
-
-  //         if (event.key === " ") {
-  //           // quillInstance.root.style.fontFamily = "bangla";
-  //           quillInstance.deleteText(wordStartIndex, lastWord.length);
-  //           quillInstance.insertText(
-  //             wordStartIndex,
-  //             replacement,
-  //             currentFormat
-  //           );
-  //           quillInstance.insertText(
-  //             wordStartIndex + replacement.length,
-  //             " ",
-  //             currentFormat
-  //           );
-  //           // quillInstance.setSelection(
-  //           //   wordStartIndex,
-  //           //   wordStartIndex + replacement.length + 1
-  //           // );
-  //         } else if (event.key === "Enter") {
-  //           // console.log("enter");
-  //           // quillInstance.root.style.fontFamily = "bangla";
-  //           quillInstance.deleteText(wordStartIndex - 1, lastWord.length);
-  //           quillInstance.insertText(
-  //             wordStartIndex - 1,
-  //             replacement,
-  //             currentFormat
-  //           );
-  //           // quillInstance.insertText(wordStartIndex + replacement.length, "\n");
-  //           // quillInstance.setSelection(
-  //           //   wordStartIndex,
-  //           //   wordStartIndex + replacement.length + 1
-  //           // );
-  //         }
-  //       }
-  //     };
-
-  //     quillInstance.root.addEventListener("keydown", handleKeyDown);
-
-  //     return () => {
-  //       quillInstance.root.removeEventListener("keydown", handleKeyDown);
-  //     };
-  //   }
-  // }, []);
-  // useEffect(() => {
-  //   const quillInstance = quillRef.current?.getEditor();
-  //   if (!quillInstance) return;
-
-  //   const handleKeyDown = (event: KeyboardEvent) => {
-  //     const selection = quillInstance.getSelection();
-  //     if (!selection) return;
-  //     const currentFormat = quillInstance.getFormat(selection.index - 1, 1);
-  //     if (banglaFont.includes(currentFormat.font)) return;
-
-  //     if (event.key === "Enter") {
-  //       event.preventDefault(); // Prevent the default behavior
-
-  //       // Get the format of the current line
-  //       const currentFont = currentFormat.font; // Get the current font
-
-  //       // Insert a new line with the same font
-  //       quillInstance.insertText(selection.index, "", { font: currentFont });
-  //       quillInstance.setSelection(selection.index + 1, 0); // Move the cursor to the new line
-  //     }
-  //   };
-
-  //   quillInstance.root.addEventListener("keydown", handleKeyDown);
-
-  //   return () => {
-  //     quillInstance.root.removeEventListener("keydown", handleKeyDown);
-  //   };
-  // }, []);
-
-  // useEffect(() => {
-  //   const quillInstance = quillRef.current?.getEditor();
-  //   if (!quillInstance) return;
-
-  //   const handleKeyDown = (event: KeyboardEvent) => {
-  //     const selection = quillInstance.getSelection();
-  //     if (!selection || selection.index === 0) return;
-
-  //     const index = selection.index;
-  //     const currentFormat = quillInstance.getFormat(selection.index - 1, 1);
-  //     const currentFont = currentFormat.font; // Store current font
-
-  //     // ✅ Font retention for all fonts when Enter is pressed
-  //     if (event.key === "Enter" && !isBanglaMode) {
-  //       console.log("enter");
-  //       event.preventDefault(); // Prevent default behavior
-  //       quillInstance.insertText(selection.index, "", currentFormat);
-  //       // quillInstance.setSelection(selection.index + 1, 0,currentFormat);
-  //       return; // Prevent further execution
-  //     }
-
-  //     // ✅ Avro conversion (Only if isBanglaMode is true and font is Bangla)
-  //     if (isBanglaMode && (event.key === " " || event.key === "Enter")) {
-  //       console.log(event.key);
-  //       let textBeforeCursor = quillInstance
-  //         .getText(0, index)
-  //         .replace(/\n$/, "");
-  //       const match = textBeforeCursor.match(/(\S+)$/); // Match last word
-
-  //       if (match) {
-  //         const lastWord = match[1];
-  //         const wordStartIndex = index - lastWord.length;
-  //         const replacement = OmicronLab.Avro.Phonetic.parse(lastWord);
-
-  //         event.preventDefault(); // Prevent default behavior
-
-  //         // quillInstance.deleteText(wordStartIndex, lastWord.length);
-  //         // quillInstance.insertText(wordStartIndex, replacement, {
-  //         //   font: currentFont,
-  //         // }); // Preserve font
-  //         // quillInstance.insertText(
-  //         //   wordStartIndex + replacement.length,
-  //         //   event.key === " " ? " " : "\n",
-  //         //   { font: currentFont }
-  //         // );
-
-  //         // // Set selection at the end
-  //         // quillInstance.setSelection(
-  //         //   wordStartIndex + replacement.length + 1,
-  //         //   0
-  //         // );
-  //         if (event.key === " ") {
-  //           // quillInstance.root.style.fontFamily = "bangla";
-  //           quillInstance.deleteText(wordStartIndex, lastWord.length);
-  //           quillInstance.insertText(
-  //             wordStartIndex,
-  //             replacement,
-  //             currentFormat
-  //           );
-  //           quillInstance.insertText(
-  //             wordStartIndex + replacement.length,
-  //             " ",
-  //             currentFormat
-  //           );
-  //           // quillInstance.setSelection(
-  //           //   wordStartIndex,
-  //           //   wordStartIndex + replacement.length + 1
-  //           // );
-  //         } else if (event.key === "Enter") {
-  //           // quillInstance.root.style.fontFamily = "bangla";
-  //           quillInstance.deleteText(wordStartIndex - 1, lastWord.length);
-  //           quillInstance.insertText(
-  //             wordStartIndex - 1,
-  //             replacement,
-  //             currentFormat
-  //           );
-  //           // quillInstance.insertText(wordStartIndex + replacement.length, "\n");
-  //           // quillInstance.setSelection(
-  //           //   wordStartIndex,
-  //           //   wordStartIndex + replacement.length + 1
-  //           // );
-  //         }
-  //       }
-  //     } else console.log("from outside", event.key);
-  //   };
-
-  //   quillInstance.root.addEventListener("keydown", handleKeyDown);
-
-  //   return () => {
-  //     quillInstance.root.removeEventListener("keydown", handleKeyDown);
-  //   };
-  // }, [isBanglaMode]);
-
-  useEffect(() => {
+  const handleKeyDown = (event: KeyboardEvent) => {
     const quillInstance = quillRef.current?.getEditor();
     if (!quillInstance) return;
-    const handleKeyDown = (event: KeyboardEvent) => {
-      console.log("key ", event.key);
-      if (event.key !== " " && event.key !== "Enter") return;
-      console.log("enter in effect");
-      const selection = quillInstance.getSelection();
-      if (!selection || selection.index === 0) return;
+    console.log("key ", event.key);
+    if (event.key !== " " && event.key !== "Enter") return;
+    console.log("enter in effect");
+    const selection = quillInstance.getSelection();
+    if (!selection || selection.index === 0) return;
 
-      const index = selection.index;
-      const currentFormat = quillInstance.getFormat(selection);
-      let textBeforeCursor = quillInstance.getText(0, index).replace(/\n$/, "");
-      console.log("text before cursor", textBeforeCursor);
-      const match = textBeforeCursor.match(/(\S+)$/); // Match last word
+    const index = selection.index;
+    const currentFormat = quillInstance.getFormat(selection);
+    let textBeforeCursor = quillInstance.getText(0, index).replace(/\n$/, "");
+    console.log("text before cursor", textBeforeCursor);
+    const match = textBeforeCursor.match(/(\S+)$/);
 
-      console.log("match", match);
-      if (match) {
-        const lastWord = match[1];
-        const wordStartIndex = index - lastWord.length;
-        const replacement = OmicronLab.Avro.Phonetic.parse(lastWord);
-        event.preventDefault();
+    console.log("match", match);
+    if (match) {
+      const lastWord = match[1];
+      const wordStartIndex = index - lastWord.length;
+      const replacement = OmicronLab.Avro.Phonetic.parse(lastWord);
+      event.preventDefault();
 
-        if (event.key === " " && banglaFont.includes(currentFormat.font)) {
-          quillInstance.deleteText(wordStartIndex, lastWord.length);
-          quillInstance.insertText(wordStartIndex, replacement, currentFormat);
+      if (event.key === " " && banglaFont.includes(currentFormat.font)) {
+        quillInstance.deleteText(wordStartIndex, lastWord.length);
+        quillInstance.insertText(wordStartIndex, replacement, currentFormat);
+        quillInstance.insertText(
+          wordStartIndex + replacement.length,
+          " ",
+          currentFormat
+        );
+      } else if (event.key === "Enter") {
+        console.log("is Bangla mode", isBanglaMode);
+        if (banglaFont.includes(currentFormat.font)) {
+          quillInstance.deleteText(wordStartIndex - 1, lastWord.length);
           quillInstance.insertText(
-            wordStartIndex + replacement.length,
-            " ",
+            wordStartIndex - 1,
+            replacement,
             currentFormat
           );
-        } else if (event.key === "Enter") {
-          console.log("is Bangla mode", isBanglaMode);
-          if (banglaFont.includes(currentFormat.font)) {
-            quillInstance.deleteText(wordStartIndex - 1, lastWord.length);
-            quillInstance.insertText(
-              wordStartIndex - 1,
-              replacement,
-              currentFormat
-            );
-            quillInstance.insertText(selection.index, "", currentFormat);
-          } else quillInstance.insertText(selection.index, "", currentFormat);
-        }
+          quillInstance.insertText(selection.index, "", currentFormat);
+        } else quillInstance.insertText(selection.index, "", currentFormat);
       }
-    };
-
-    quillInstance.root.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      quillInstance.root.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [isBanglaMode]);
-
-  // useEffect(() => {
-  //   const quillInstance = quillRef.current?.getEditor();
-  //   if (!quillInstance) return;
-  //   const handleKeyDown = (event: any) => {
-  //     if (event.key === "Enter") {
-  //       const selection = quillInstance.getSelection();
-  //       if (!selection || selection.length == 0) return;
-  //       const currentFormat = quillInstance.getFormat(selection);
-  //       quillInstance.deleteText(selection.length - 1, selection.length);
-  //       quillInstance.insertText(selection.length - 1, "\n", currentFormat);
-  //     }
-  //   };
-  //   quillInstance.root.addEventListener("keydown", handleKeyDown);
-
-  //   return () => {
-  //     quillInstance.root.removeEventListener("keydown", handleKeyDown);
-  //   };
-  // }, [currentFont]);
-
-  // useAvro(quillRef, { bangla: isBanglaMode, fontName: currentFont });
-
-  // useEffect(() => {
-  //   const quillInstance = quillRef.current?.getEditor();
-  //   if (!quillInstance) return;
-
-  //   const handleKeyDown = (event: KeyboardEvent) => {
-  //     if (event.key === "Enter") {
-  //       event.preventDefault(); // Prevent default behavior
-
-  //       const selection = quillInstance.getSelection();
-  //       if (!selection) return;
-
-  //       const currentFormat = quillInstance.getFormat(selection.index - 1, 1); // Get current formatting
-  //       const currentFont = currentFormat.font; // Get current font
-  //       console.log("current font", currentFormat.font);
-  //       // Handle Avro conversion if in Bangla mode
-  //       if (banglaFont.includes(currentFont)) {
-  //         const textBeforeCursor = quillInstance
-  //           .getText(0, selection.index)
-  //           .replace(/\n$/, ""); // Get text before cursor
-  //         const match = textBeforeCursor.match(/(\S+)$/); // Match the last word
-  //         console.log("enter key press");
-  //         if (match) {
-  //           const lastWord = match[1];
-  //           const wordStartIndex = selection.index - lastWord.length;
-  //           const replacement = OmicronLab.Avro.Phonetic.parse(lastWord); // Convert to Bangla
-
-  //           // Replace the last word with the converted Bangla text
-  //           quillInstance.deleteText(wordStartIndex, lastWord.length);
-  //           quillInstance.insertText(
-  //             wordStartIndex,
-  //             replacement,
-  //             currentFormat
-  //           );
-  //         }
-  //       }
-
-  //       // Insert a new line with the current font
-  //       quillInstance.insertText(selection.index, "", { font: currentFont });
-  //       quillInstance.setSelection(selection.index + 1, 0); // Move cursor to the new line
-  //     }
-  //   };
-
-  //   quillInstance.root.addEventListener("keydown", handleKeyDown);
-
-  //   return () => {
-  //     quillInstance.root.removeEventListener("keydown", handleKeyDown);
-  //   };
-  // }, []); // Re-run effect when Bangla mode changes
+    }
+  };
 
   const [currentLength, setCurrentLength] = useState(0);
   const handleKeyUp = () => {
@@ -929,25 +500,6 @@ export default function TextStyleComponent() {
         text[text.length - 1] === "\n" ? text.length - 1 : text.length
       );
     }
-    // if(isBanglaMode())
-    // if (isBanglaMode && window.Avro) {
-    //   const quill = quillRef.current?.getEditor();
-    //   if (quill) {
-    //     const range = quill.getSelection();
-    //     if (range) {
-    //       const text = quill.getText(range.index - 10, 10);
-    //       const transformed = window.Avro.phonetic(text);
-    //       quill.deleteText(range.index - text.length, text.length);
-    //       quill.insertText(
-    //         range.index - text.length,
-    //         transformed,
-    //         "font",
-    //         "bangla"
-    //       );
-    //       // quill.setSelection(range.index - text.length + transformed.length);
-    //     }
-    //   }
-    // }
   };
 
   return (
@@ -967,6 +519,7 @@ export default function TextStyleComponent() {
           theme="snow"
           modules={modules}
           onKeyUp={handleKeyUp}
+          onKeyDown={handleKeyDown}
           // onChangeSelection={handleSelectionChange}
           style={{ height: "20vh", marginBottom: "40px" }}
         />
